@@ -1,13 +1,14 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 from builtins import input
+import os
 
-str = input("Enter your input: ")
-if(str=="123456"):
-    print("Received input is : ", str)
-else:
-    print('SN ERROR!')
 
+def deleteFile(path):
+    if(os.path.isdir(path)):
+        pass
+    else:
+        os.remove(path)
 
 def getPic(path):
     print("Get pic fileName")
@@ -35,3 +36,27 @@ def getPic(path):
 
     print(PEFList)
     return PEFList
+
+def SyncPC2Walkman():
+   file=open('DeleteList.txt')
+   deleteList=file.readlines()
+   for item in deleteList:
+       deleteFile(item)
+
+def deleteEmptyFolder():
+    path = os.getcwd()  # 文件夹目录
+    files = os.listdir(path)  # 获取路径下的子文件(夹)列表
+    for file in files:
+        print 'Traversal at', file
+        if(os.path.isdir(file)):  # 如果是文件夹
+            if(not os.listdir(file)):  # 如果子文件为空
+                os.rmdir(file)  # 删除这个空文件夹
+
+
+str = input("Enter your input: ")
+if(str=="123456"):
+    print("Received input is : ", str)
+    SyncPC2Walkman()
+    deleteEmptyFolder()
+else:
+    print('SN ERROR!')

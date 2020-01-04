@@ -23,8 +23,7 @@ def getPic(path):
             #     pass
         else:
             print("未知文件:%s",name)
-
-    print(PEFList)
+    # print(PEFList)
     return PEFList
 path = os.getcwd()  # 文件夹目录
 list=getPic(path)
